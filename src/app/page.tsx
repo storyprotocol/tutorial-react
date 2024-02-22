@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-8 lg:px-20 lg:py-12 gap-8 max-w-2xl lg:max-w-5xl mx-auto bg-black text-white text-sm">
       <ConnectWalletButton />
-      <div className="flex flex-col text-center text-white">
+      <div className="flex flex-col text-center text-white text-lg">
         {!isConnected ? (
           <>
             <p>
@@ -33,14 +33,16 @@ export default function Home() {
         )}
       </div>
       {isConnected && (
-        <>
+        <div className="w-full flex flex-col gap-4">
           <MintNft />
           <RegisterIpAsset />
           <RegisterPILPolicy />
           <AddPolicyToIp />
           <MintLicense />
 
-          <p>Continue with these steps to register a derivative NFT</p>
+          <p className="text-center mt-8 text-lg">
+            Continue with these steps to register a derivative NFT
+          </p>
           <MintNft
             text={'6. Mint a new NFT to represent a derivative artwork NFT'}
             buttonText={'Mint derivative NFT'}
@@ -51,7 +53,7 @@ export default function Home() {
             description="5. Specify the licenseId and derivative NFT details in RegisterDerivativeIp.tsx"
             ActionComponent={RegisterDerivativeIp}
           />  */}
-        </>
+        </div>
       )}
     </main>
   );
