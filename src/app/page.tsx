@@ -1,69 +1,58 @@
 'use client';
+import { useAccount } from 'wagmi';
+
 import MintNft from './MintNft';
-import RegisterDerivativeIp from './RegisterDerivativeIp';
-import RegisterRootIp from './RegisterRootIp';
-import RegisterUMLPolicy from './RegisterUMLPolicy';
-import { Suspense } from 'react';
+import RegisterPILPolicy from './RegisterPILPolicy';
 import MintLicense from './MintLicense';
-import { ConnectKitButton } from 'connectkit';
-import { ReactNode } from 'react';
+import ConnectWalletButton from './ConnectWalletButton';
+import RegisterIpAsset from './RegisterIpAsset';
+import AddPolicyToIp from './AddPolicyToIpAsset';
+import RegisterDerivativeIp from './RegisterDerivativeIpAsset';
 
 export default function Home() {
+  const { isConnected } = useAccount();
+
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 gap-8 max-w-4xl mx-auto">
-      <Suspense fallback={<div>Loading...</div>}>
-        <ConnectKitButton />
-        <div className="flex flex-col text-center text-white">
-          <p>
-            Modify the values in each components file to interact with the SDK.
-          </p>
-        </div>
+    <main className="flex min-h-screen flex-col items-center p-8 lg:px-20 lg:py-12 gap-8 max-w-2xl lg:max-w-5xl mx-auto bg-black text-white text-sm">
+      <ConnectWalletButton />
+      <div className="flex flex-col text-center text-white">
+        {!isConnected ? (
+          <>
+            <p>
+              This is a simple example of how to use the Story Protocol React
+              SDK to interact with the protocol.
+            </p>
+            <p>Connect your wallet to get started.</p>
+          </>
+        ) : (
+          <>
+            {' '}
+            Follow these steps to register an NFT as an IP asset, add licensing
+            terms, and mint a license
+          </>
+        )}
+      </div>
+      {isConnected && (
+        <>
+          <MintNft />
+          <RegisterIpAsset />
+          <RegisterPILPolicy />
+          <AddPolicyToIp />
+          <MintLicense />
 
-        <TextAndButton
-          description="1. Mint an NFT if you don't have one yet"
-          ActionComponent={MintNft}
-        />
+          <p>Continue with these steps to register a derivative NFT</p>
+          <MintNft
+            text={'6. Mint a new NFT to represent a derivative artwork NFT'}
+            buttonText={'Mint derivative NFT'}
+          />
+          <RegisterDerivativeIp />
 
-        <TextAndButton
-          description="2. Update the contract address and token ID in RegisterRootIp.tsx"
-          ActionComponent={RegisterRootIp}
-        />
-
-        <TextAndButton
-          description="3. Configure a desired policy in RegisterUMLPolicy.tsx"
-          ActionComponent={RegisterUMLPolicy}
-        />
-
-        <TextAndButton
-          description="4. Specify the policyId and recipient in MintLicense.tsx"
-          ActionComponent={MintLicense}
-        />
-
-        <TextAndButton
-          description="5. Mint a derivative NFT if you don't have one yet"
-          ActionComponent={MintNft}
-        />
-
-        <TextAndButton
-          description="5. Specify the licenseId and derivative NFT details in RegisterDerivativeIp.tsx"
-          ActionComponent={RegisterDerivativeIp}
-        />
-      </Suspense>
+          {/* <TextAndButton
+            description="5. Specify the licenseId and derivative NFT details in RegisterDerivativeIp.tsx"
+            ActionComponent={RegisterDerivativeIp}
+          />  */}
+        </>
+      )}
     </main>
   );
 }
-
-const TextAndButton = ({
-  description,
-  ActionComponent,
-}: {
-  description: string;
-  ActionComponent: () => ReactNode;
-}) => {
-  return (
-    <div className="flex flex-row gap-4 w-full justify-between">
-      <p className="flex my-auto">{description}</p>
-      <ActionComponent />
-    </div>
-  );
-};
