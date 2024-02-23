@@ -10,7 +10,10 @@ const config = createConfig(
   getDefaultConfig({
     chains: [sepolia],
     transports: {
-      [sepolia.id]: http(process.env.NEXT_PUBLIC_RPC_PROVIDER_URL!),
+      [sepolia.id]: http(
+        process.env.NEXT_PUBLIC_RPC_PROVIDER_URL ??
+          'https://rpc.ankr.com/eth_sepolia'
+      ),
     },
     ssr: true,
     walletConnectProjectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID!, // Required API Keys
