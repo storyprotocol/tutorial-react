@@ -2,7 +2,7 @@ This is a simple React example repo to demonstrate the React SDK. This repo uses
 
 ## Getting Started
 
-First, make sure you have a WalletConnect ID and store that in a `.env.local` file:
+First, make sure you have a [WalletConnect](https://walletconnect.com/) ID and store that in a `.env.local` file:
 
 ```.env.local
 NEXT_PUBLIC_WC_PROJECT_ID=<YOUR_WC_PROJECT_ID>
