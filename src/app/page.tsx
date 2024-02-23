@@ -8,12 +8,21 @@ import ConnectWalletButton from './ConnectWalletButton';
 import RegisterIpAsset from './RegisterIpAsset';
 import AddPolicyToIp from './AddPolicyToIpAsset';
 import RegisterDerivativeIp from './RegisterDerivativeIpAsset';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const { isConnected } = useAccount();
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
+
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 lg:px-20 lg:py-12 gap-8 max-w-2xl lg:max-w-5xl mx-auto bg-black text-white text-sm">
+    <main className="flex min-h-screen flex-col items-center p-8 lg:px-20 lg:py-12 gap-8 max-w-2xl lg:max-w-5xl mx-auto  bg-black text-white text-sm">
       <ConnectWalletButton />
       <div className="flex flex-col text-center text-white text-lg">
         {!isConnected ? (
@@ -28,7 +37,8 @@ export default function Home() {
           <>
             {' '}
             Follow these steps to register an NFT as an IP asset, add licensing
-            terms, and mint a license
+            terms, and mint a license. Use Etherscan to look at the events
+            emitted to get the necessary information.
           </>
         )}
       </div>

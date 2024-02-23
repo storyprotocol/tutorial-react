@@ -23,7 +23,7 @@ export default function RegisterPILPolicy() {
     derivativesAttribution: true, // Whether or not attribution is required for derivatives of the work
     derivativesApproval: false, // Whether or not the licensor must approve derivatives of the work before they can be linked to the licensor IP ID
     derivativesReciprocal: false, // Whether or not the licensee must license derivatives of the work under the same terms
-    territories: [], // List of territories where the license is valid. If empty, global
+    territories: ['USA', 'CANADA'], // List of territories where the license is valid. If empty, global
     distributionChannels: [], // List of distribution channels where the license is valid. Empty if no restrictions.
     contentRestrictions: [], //
   };
@@ -44,8 +44,8 @@ export default function RegisterPILPolicy() {
   }
 
   const text = !txHash
-    ? '3. Register a PIL Policy.'
-    : '3. Register a PIL Policy. A successful transaction will result in a `policyId` value.';
+    ? '3. (Optional) Register a PIL Policy.'
+    : '3. (Optional) Register a PIL Policy. A successful transaction will result in a `policyId` value.';
 
   return (
     <TextAndButton

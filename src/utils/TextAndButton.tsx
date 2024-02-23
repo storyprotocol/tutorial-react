@@ -12,7 +12,7 @@ export default function TextAndButton({
 }) {
   return (
     <div className="flex flex-row gap-8 w-full justify-between">
-      <p className="flex my-auto">{description}</p>
+      <p className="flex my-auto w-full">{description}</p>
       <Button />
       {txHash ? (
         <Link

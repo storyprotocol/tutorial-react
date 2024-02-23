@@ -9,12 +9,16 @@ export default function MintLicense() {
   const { writeContractAsync, isPending, data: txHash } = useMintLicense();
   const { address } = useAccount();
 
-  // Mint license inputs
-  // const ipId = undefined; // Update this with the IP ID address from RegisterRootIp.tsx
-  const ipId = '0x14142b6799C1227e1E03714CCCa71596a73059bd'; // Example
-  const policyId = BigInt(1); // Update this with a policy that's attached to the IP Asset
+  //* NOTE: if the `policyId` has commercialUse = true, then this transaction below will fail because it requires payments.
+  //* For the sake of this example, we will keep it simpler (non commercial)
+
+  // Update these
+  const ipId = undefined; // Update this with the IP ID address from RegisterRootIp.tsx
+  // const ipId = '0x12591729eDd365807C48AC90dc857f6f28b5e448'; // Example
+  const policyId = BigInt(4); // Update this with a policy that's attached to the IP Asset
+
   const amount = BigInt(1); // The amount of licenses to mint
-  const minter = address; // The recipient of the license
+  const minter = address as Address; // The recipient of the license
   const royaltyContext = '0x'; // Additional calldata for the royalty policy
 
   function handleClick() {
@@ -24,12 +28,12 @@ export default function MintLicense() {
 
     writeContractAsync({
       functionName: 'mintLicense',
-      args: [policyId, ipId, amount, minter as Address, royaltyContext],
+      args: [policyId, ipId, amount, minter, royaltyContext],
     });
   }
 
   const text = !txHash
-    ? '4. Mint a license that allows for derivatives for your IP'
+    ? '4. Mint a license for your IP Asset. Update the `ipId` and `policyId` in MintLicense.tsx'
     : '4. Mint a license that allows for derivatives for your IP. A successful transaction will result in a `licenseId` value.';
 
   return (

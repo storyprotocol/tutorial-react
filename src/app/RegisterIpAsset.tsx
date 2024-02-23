@@ -11,9 +11,9 @@ export default function RegisterIpAsset() {
     data: txHash,
   } = useRegisterRootIp();
 
-  // Register root IP inputs
+  // Update these
   const tokenId = undefined; // Your NFT token ID as BigInt
-  // const tokenId = BigInt(13); // Example
+  // const tokenId = BigInt(23); // Example
   const nftContract = '0x7ee32b8B515dEE0Ba2F25f612A04a731eEc24F49'; // Update if using your own NFT
 
   const policyId = BigInt(0); // Policy ID from RegisterPILPolicy.tsx, if want to attach policy in same transaction
@@ -36,7 +36,7 @@ export default function RegisterIpAsset() {
 
   const text =
     tokenId === undefined
-      ? '2. Update the tokenId value in RegisterRootIp.tsx'
+      ? '2. Update the tokenId value in RegisterIpAsset.tsx'
       : '2. Register your NFT as an IP Asset. A successful transaction will result in a `ipId` value, emitted as an event, that represents your IPA ID.';
 
   return (
