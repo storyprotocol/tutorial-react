@@ -31,6 +31,10 @@ pnpm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Note
+If you are having issues with types not importing correctly, change `"moduleResolution": "bundler",` to `"moduleResolution": "node",` in your `tsconfig.json`
+
+
 ## Following the tutorial
 
 In this tutorial, we will:
