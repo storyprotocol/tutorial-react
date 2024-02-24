@@ -41,7 +41,7 @@ In this tutorial, we will:
 
 1. (Optional) Create an NFT, if you don't have one already
 2. Register that NFT onto the IP Asset registry, as an IP Asset (IPA) (`RegisterIpAsset.tsx`)
-3. (Optional) Create a [Policy](https://docs.storyprotocol.xyz/docs/licensing-presets-flavors), if you don't want to use a pre-existing Policy (`.tsx`). Note: You want to set commercialUse = false, and derivativesAllowed = true to keep this demonstration easier.
+3. (Optional) Create a [Policy](https://docs.storyprotocol.xyz/docs/preset-pil-policies), if you don't want to use a pre-existing Policy (`.tsx`). Note: You want to set commercialUse = false, and derivativesAllowed = true to keep this demonstration easier.
 4. Attach the Policy terms to your IPA (`AddPolicyToIpAsset.tsx`)
 5. Mint a License NFT for your IPA
 
